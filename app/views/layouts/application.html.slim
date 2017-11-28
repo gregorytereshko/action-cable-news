@@ -1,0 +1,103 @@
+doctype html
+html
+  head
+    title
+      | EvroneTest
+    = csrf_meta_tags
+    = action_cable_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    nav.light-blue.lighten-1[role="navigation"]
+      .nav-wrapper.container
+        = link_to root_path, class: 'logo-container brand-logo'
+          | Logo
+        ul.right.hide-on-med-and-down
+          li
+            = link_to root_path
+              | Главная
+          li
+            = link_to admin_path
+              | Добавить статью
+        / ul#nav-mobile.side-nav
+        a.button-collapse[href="#" data-activates="nav-mobile"]
+          i.material-icons
+            | menu
+    == yield
+    .container
+      .section
+        .row
+          .col.s12.m4
+            .icon-block
+              h2.center.light-blue-text
+                i.material-icons
+                  | flash_on
+              h5.center
+                | Bicycle fetishism order-flow
+              p.light
+                | Refrigerator papier-mache katana denim voodoo god pen jeans numinous city dome Chiba. Corrupted pen fetishism boat 8-bit apophenia concrete. Drugs semiotics courier knife numinous boy faded paranoid pre-carbon film weathered dome spook plastic towards shoes. Tattoo faded alcohol urban tube otaku assassin claymore mine skyscraper.
+          .col.s12.m4
+            .icon-block
+              h2.center.light-blue-text
+                i.material-icons
+                  | group
+              h5.center
+                | Uplink RAF dome
+              p.light
+                | Into media dome modem gang girl saturation point engine systema. Dissident long-chain hydrocarbons office numinous crypto-bridge RAF nodal point digital silent range-rover refrigerator j-pop. Kowloon spook dome narrative long-chain hydrocarbons katana geodesic hotdog skyscraper meta-tank-traps pistol.
+          .col.s12.m4
+            .icon-block
+              h2.center.light-blue-text
+                i.material-icons
+                  | settings
+              h5.center
+                | Fetishism soul-delay semiotics
+              p.light
+                | Disposable uplink corporation camera savant into geodesic singularity. Nodality sensory meta-city dome claymore mine sign dissident paranoid dead network chrome range-rover into weathered. San Francisco physical receding denim wonton soup human alcohol nodal point hotdog katana towards franchise-space dissident pre-man rifle.
+      br
+      br
+    footer.page-footer.orange
+      .container
+        .row
+          .col.l6.s12
+            h5.white-text
+              | Alcohol tattoo wonton
+            p.grey-text.text-lighten-4
+              | Assault dead RAF apophenia sign meta-spook systema ablative 8-bit. Render-farm construct sign 3D-printed futurity hacker weathered.
+          .col.l3.s12
+            h5.white-text
+              | Settings
+            ul
+              li
+                a.white-text[href="#!"]
+                  | Link 1
+              li
+                a.white-text[href="#!"]
+                  | Link 2
+              li
+                a.white-text[href="#!"]
+                  | Link 3
+              li
+                a.white-text[href="#!"]
+                  | Link 4
+          .col.l3.s12
+            h5.white-text
+              | Connect
+            ul
+              li
+                a.white-text[href="#!"]
+                  | Link 1
+              li
+                a.white-text[href="#!"]
+                  | Link 2
+              li
+                a.white-text[href="#!"]
+                  | Link 3
+              li
+                a.white-text[href="#!"]
+                  | Link 4
+      .footer-copyright
+        .container
+          | Knife rain
+          a.orange-text.text-lighten-3[href="http://materializecss.com"]
+            | Vehicle
