@@ -1,10 +1,9 @@
-#main_news
-  h1.header.center.orange-text.title
-    = main_news.title
-  .row.center
-    h5.header.col.s12.light.description
-      = main_news.description.html_safe
-    small.published_at
-      = I18n.l main_news.published_at.to_datetime
-  .row.center
-    = link_to 'Добавить статью', admin_path, class: 'btn-large waves-effect waves-light orange', id: 'download-button'
+h1.header.center.orange-text.title
+  = main_news.title
+.row.center
+  h5.header.col.s12.light.description
+    = main_news.description.html_safe
+  small.published_at
+    = I18n.l main_news.published_at.to_datetime
+.row.center
+  = link_to 'Добавить статью', admin_path, class: 'btn-large waves-effect waves-light orange', id: 'download-button'

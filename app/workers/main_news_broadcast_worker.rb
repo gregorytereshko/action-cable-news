@@ -3,8 +3,9 @@ class MainNewsBroadcastWorker
 
   sidekiq_options queue: "default", retry: 3
 
-  def perform(main_news_json)
-    object = OpenStruct.new main_news_json
+  def perform(main_news_hash)
+    byebug
+    object = OpenStruct.new main_news_hash
     ActionCable.server.broadcast 'main_news', main_news: render_main_news(object)
   end
 

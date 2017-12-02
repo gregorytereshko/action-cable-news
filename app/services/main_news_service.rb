@@ -1,11 +1,14 @@
 class MainNewsService
 
-  PROPERTIES = %w(title description published_at link).freeze
-  METHODS = %w(save!).freeze
+  PROPERTIES = %w(title description published_at).freeze
 
-  attr_accessor :main_news
+  attr_accessor :main_news, :redis_service
 
-  (PROPERTIES + METHODS).each do |method_name|
+  def initialize(options = {})
+    @redis_service = options[:redis_service] || default_redis_service
+  end
+
+  (PROPERTIES).each do |method_name|
     define_method(method_name) do
       raise NotImplementedError, "Subclasses must define '#{method_name}'."
     end
@@ -16,23 +19,47 @@ class MainNewsService
   end
 
   def save!
-    self.class.redis.set(self.class.identifier, properties.to_json)
+    if present? && !redis_service.same?(properties)
+      persist!
+      run_broadcast
+      true
+    else
+      false
+    end
   end
 
-  def self.use
-    result = redis.get(identifier)
-    return nil if result.blank?
-    JSON.parse(result, object_class: OpenStruct)
+  def run_broadcast
+    raise NotImplementedError, "Subclasses must define 'run_broadcast'."
+  end
+
+  def assing_attributes attrs = {}
+    attrs.each do |k,v|
+      instance_variable_set("@#{k}", v) unless v.nil?
+    end
+  end
+
+  def use
+    @main_news = redis_service.structured
+    assing_attributes(@main_news.to_h)
+    @main_news
   end
 
   private
 
-  def self.identifier
-    raise NotImplementedError, "Subclasses must define 'identifier'."
+  def present?
+    properties.values.all? { |val| val.present? }
   end
 
-  def self.redis
-    $redis
+  def persist!
+    redis_service.set(properties)
+  end
+
+  def default_redis_service
+    RedisHashService.new(self.class.identifier)
+  end
+
+  def self.identifier
+    raise NotImplementedError, "Subclasses must define 'identifier'."
   end
 
 end

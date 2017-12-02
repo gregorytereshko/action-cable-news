@@ -7,9 +7,8 @@ class AuthorMainNewsService < MainNewsService
     # attrs.each do |key, value|
     #   self.send("#{key}=".to_sym, value) if self.respond_to?("#{key}=".to_sym)
     # end
-    attrs.each do |k,v|
-      instance_variable_set("@#{k}", v) unless v.nil?
-    end
+    assing_attributes(attrs)
+    super(attrs)
   end
 
   def properties
@@ -21,13 +20,21 @@ class AuthorMainNewsService < MainNewsService
     }
   end
 
-  def self.validate
-    record = self.use
-    record.presence && DateTime.current < record.expired_at.to_datetime && record
+  def run_broadcast
+    MainNewsBroadcastWorker.perform_async(use.to_h)
   end
 
-  def self.hashed
-    record = self.validate
+  def valid?
+    use.to_h.presence && DateTime.current < expired_at.to_datetime
+  end
+
+  def validate
+    valid? && main_news
+  end
+
+
+  def hashed
+    record = validate
     if record
       record.to_h
     else

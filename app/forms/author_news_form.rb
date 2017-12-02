@@ -33,23 +33,24 @@ class AuthorNewsForm
   private
 
   def persist!
-    service.new(
+    news = service.new(
       title: title,
       description: description,
       published_at: published_at,
       expired_at: expired_at
-    ).save!
-    record = service.use
+    )
+    news.save!
+    record = news.use
 
-    update_in_view
+    run_broadcast(record)
   end
 
   def service
     AuthorMainNewsService
   end
 
-  def update_in_view
-    MainNewsBroadcastWorker.perform_async(MainNewsPolicy.new.main_news.to_h)
+  def run_broadcast record
+    MainNewsBroadcastWorker.perform_async(record.to_h)
   end
 
 end

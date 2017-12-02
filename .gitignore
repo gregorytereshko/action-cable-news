@@ -22,7 +22,6 @@
 /public/ckeditor_assets/*
 /config/database.yml
 /db/schema.rb
-/config/initializers/sidekiq.rb
 /config/puma.rb
 /config/secrets.yml
 /dump.rdb

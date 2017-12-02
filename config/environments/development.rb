@@ -1,8 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_cable.url = "ws://51.15.222.93/cable"
-  config.action_cable.allowed_request_origins = ['https://51.15.222.93', 'http://51.15.222.93']
+  config.action_cable.url = "ws://#{ENV["host"]}/cable"
+  config.action_cable.allowed_request_origins = ["https://#{ENV["host"]}", "http://#{ENV["host"]}"]
 
 
 

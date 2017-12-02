@@ -5,14 +5,9 @@ class MainNewsRssWorker
 
   def perform(options = {})
     klass = options[:klass] || 'YandexMainNewsRssService'.constantize
-    klass.new(url: options[:url]).save!
-
-    MainNewsBroadcastWorker.perform_async(main_news_hash)
+    main_news = klass.new(url: options[:url])
+    main_news.load_main_news
+    main_news.save!
   end
 
-  private
-
-  def main_news_hash
-    MainNewsPolicy.new.main_news.to_h
-  end
 end

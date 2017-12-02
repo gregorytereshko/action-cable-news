@@ -3,7 +3,9 @@
   .container
     br
     br
-    == render 'main_news', main_news: @main_news
+    #main_news
+      - if @main_news.present?
+        == render 'main_news', main_news: @main_news
     br
     br
 
