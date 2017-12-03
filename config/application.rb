@@ -18,6 +18,18 @@ Bundler.require(*Rails.groups)
 
 module EvroneTest
   class Application < Rails::Application
+
+    config.time_zone = 'Europe/Moscow'
+    config.active_record.default_timezone = :local
+
+    config.i18n.enforce_available_locales = false
+    config.i18n.available_locales = [:en, :ru]
+    config.i18n.default_locale = :'ru'
+    config.action_dispatch.default_headers = {}
+
+    # config.autoload_paths << Rails.root.join('app', 'policy')
+    # config.autoload_paths << Rails.root.join('app', 'form')
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
