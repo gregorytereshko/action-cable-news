@@ -1,10 +1,9 @@
-
 #index-banner.section.no-pad-bot
   .container
     br
     br
     #main_news
-      - if @main_news.present?
+      - if @main_news_loaded
         == render 'main_news', main_news: @main_news
     br
     br

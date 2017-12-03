@@ -11,10 +11,10 @@ RSpec.describe AuthorMainNewsService do
       expired_at: DateTime.current + 1.hour,
       published_at: DateTime.current
     }
-    @redis_conn = Redis.new
-    @redis_conn.flushall
+    @redis_conn = Redis.new(url: ENV['REDIS_VARS_URL'])
   end
   before do
+    @redis_conn.flushall
     Sidekiq::Worker.clear_all
   end
   after(:all) do

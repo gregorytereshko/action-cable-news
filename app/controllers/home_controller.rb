@@ -8,6 +8,8 @@ class HomeController < ApplicationController
                                                   author_main_news_service: author_main_news
                                                 )
     @main_news = MainNewsPolicy.new(rss_news: rss_main_news).main_news
+
+    @main_news_loaded = @main_news.to_h.present?
   end
 
   def admin

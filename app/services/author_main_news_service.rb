@@ -1,5 +1,4 @@
 class AuthorMainNewsService < MainNewsService
-
   IDENTIFIER = 'main_author_news'.freeze
   attr_accessor :title, :description, :published_at, :expired_at
 
@@ -31,7 +30,6 @@ class AuthorMainNewsService < MainNewsService
   def validate
     valid? && main_news
   end
-
 
   def hashed
     record = validate

@@ -7,11 +7,19 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.6'
+gem 'rails', '~> 5.1.3'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.3.18', '< 0.5'
+# gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.10'
+# gem 'puma', '~> 3.0'
+
+# Use Rack Timeout. Read more: https://github.com/heroku/rack-timeout
+gem 'rack-timeout', '~> 0.4'
+
+# Use PostgreSQL as the database for Active Record
+gem 'pg', '~> 0.21'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -38,10 +46,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'html2slim'
 gem "slim-rails", '3.1.1'
 
-gem 'redis', '~>3.2'
-gem 'redis-rails'
+# gem 'redis', '~>3.2'
+gem 'redis-rails', '~> 5.0'
 
-gem 'sidekiq'
+gem 'sidekiq', '~> 5.0'
 gem "sidekiq-cron", "~> 0.6.3"
 
 gem 'shallow_attributes'
@@ -73,4 +81,6 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data'

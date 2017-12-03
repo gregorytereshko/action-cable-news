@@ -6,7 +6,9 @@ RSpec.describe RedisHashService do
   let(:test_key) { 'test_key' }
   let(:test_value) { { test: '123' } }
   before(:all) do
-    @redis_conn = Redis.new
+    @redis_conn = Redis.new(url: ENV['REDIS_VARS_URL'])
+  end
+  before do
     @redis_conn.flushall
   end
   subject { described_class.new(test_key, redis: @redis_conn) }
