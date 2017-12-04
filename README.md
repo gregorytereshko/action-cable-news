@@ -1,24 +1,49 @@
-# README
+# ACTION CABLE NEWS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ To run this app you'll need:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ ### Clone or download the repo
+ ```
+ git clone https://...
+ ```
+ ### Make sure that you haven't running redis or postgresql process on your local machine
+ to stop them type:
+ ```
+ sudo /etc/init.d/redis-server stop
+ sudo /etc/init.d/postgresql stop
+ ```
+ ### Rename _.env file to .env
+ change some config if needed
+ ### Run and build docker
+ ```
+ docker-compose up --build
+ ```
+ In future you can run docker as daemon
+ ```
+ docker-compose up -d
+ ```
+ and to stop the daemon:
+ ```
+ docker-compose stop
+ ```
+ ### Reset database if not exists
+ ```
+ docker-compose exec website bundle exec rails db:reset
+ ```
+ ### Enter rails console to run news scheduler
+ ```
+ docker-compose exec website rails console
+ ```
+ and run following command:
+ ```
+ YandexMainNewsRssService.run
+ ```
+ ### Run tests
+ ```
+ docker-compose exec website bundle exec rspec spec
+ ```
+ ### Got to
+ ```
+ http://0.0.0.0:3000
+ ```
+ ### Enjoy
