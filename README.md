@@ -12,8 +12,7 @@
  sudo /etc/init.d/redis-server stop
  sudo /etc/init.d/postgresql stop
  ```
- ### Rename _.env file to .env
- change some config if needed
+ ### Do some changes in .env if needed
  ### Run and build docker
  ```
  docker-compose up --build
