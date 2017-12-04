@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def index
+    # this is a full example of interfaces
+    # there is a default value for each of param
+    # to load main news you can simply use
+    # MainNewsPolice.new
     author_redis_service = RedisHashService.new(AuthorMainNewsService.identifier, redis: redis)
     rss_redis_service = RedisHashService.new(YandexMainNewsRssService.identifier, redis: redis)
     author_main_news = AuthorMainNewsService.new(redis_service: author_redis_service)
@@ -8,8 +12,6 @@ class HomeController < ApplicationController
                                                   author_main_news_service: author_main_news
                                                 )
     @main_news = MainNewsPolicy.new(rss_news: rss_main_news).main_news
-
-    @main_news_loaded = @main_news.to_h.present?
   end
 
   def admin

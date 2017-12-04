@@ -2,10 +2,7 @@ class AuthorMainNewsService < MainNewsService
   IDENTIFIER = 'main_author_news'.freeze
   attr_accessor :title, :description, :published_at, :expired_at
 
-  def initialize attrs = {}
-    # attrs.each do |key, value|
-    #   self.send("#{key}=".to_sym, value) if self.respond_to?("#{key}=".to_sym)
-    # end
+  def initialize(attrs = {})
     assing_attributes(attrs)
     super(attrs)
   end

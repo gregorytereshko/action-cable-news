@@ -68,7 +68,7 @@ class MainNewsRssService < MainNewsService
     raise NotImplementedError, "Subclasses must define 'default_url'."
   end
 
-  def respond? opened
+  def respond?(opened)
     opened.status == ['200', 'OK']
   end
 

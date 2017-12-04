@@ -49,7 +49,7 @@ class AuthorNewsForm
     AuthorMainNewsService
   end
 
-  def run_broadcast record
+  def run_broadcast(record)
     MainNewsBroadcastWorker.perform_async(record.to_h)
   end
 

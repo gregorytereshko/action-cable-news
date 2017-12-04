@@ -8,7 +8,7 @@ class RedisHashService
     @redis = options[:redis] || default_redis_conn
   end
 
-  def set value
+  def set(value)
     raise TypeError, 'Passed value must be a hash' unless value.kind_of?(Hash)
     @redis.set(@key, value&.to_json)
   end
@@ -30,7 +30,7 @@ class RedisHashService
     JSON.parse(get)
   end
 
-  def same? value
+  def same?(value)
     hashed == JSON.parse(value.to_json)
   end
 

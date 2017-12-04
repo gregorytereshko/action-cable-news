@@ -32,7 +32,7 @@ class MainNewsService
     raise NotImplementedError, "Subclasses must define 'run_broadcast'."
   end
 
-  def assing_attributes attrs = {}
+  def assing_attributes(attrs = {})
     attrs.each do |k,v|
       instance_variable_set("@#{k}", v) unless v.nil?
     end

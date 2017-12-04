@@ -3,7 +3,7 @@
     br
     br
     #main_news
-      - if @main_news_loaded
+      - if @main_news.to_h.present?
         == render 'main_news', main_news: @main_news
     br
     br
